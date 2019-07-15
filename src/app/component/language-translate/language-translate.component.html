@@ -1,0 +1,12 @@
+<p>language-translate works!</p>
+<select #langSelect (change)="translate.use(langSelect.value)">
+    <option *ngFor="let lang of LanguageList" 
+        [value]="lang" [selected]="lang === translate.currentLang">
+        {{ lang }}
+    </option>
+</select>
+
+
+
+<h2>{{ 'HOME.TITLE' | translate }}</h2>
+<h2>{{ 'HOME.SELECT' | translate }}</h2>

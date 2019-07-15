@@ -1,0 +1,65 @@
+<div class="login-form">
+    <form [ngClass]="
+    { 'was-validated' : (loginForm.invalid && loginForm.submitted)}"
+    name="loginForm" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+
+      <div class="form-group">
+        <label>Email address</label>
+        <input 
+            email
+            type="email" 
+            class="form-control" 
+            placeholder="Enter email"
+            name="email"
+            [(ngModel)]="user.email"
+            #email="ngModel"
+            required
+            [ngClass] ="{'is-invalid' : (email.touched && email.invalid)}"
+        >
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback" *ngIf="email.errors?.required">Email address is required</div>
+        <div class="invalid-feedback" *ngIf="email.errors?.email">Please enter your email address</div>
+
+        <!-- {{email.errors | json }} -->
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            name="password"
+            [(ngModel)]="user.password"
+            #password="ngModel"
+            required
+            [pattern]="strongPassPattern"
+            [ngClass]="{'is-invalid' : (password.touched && password.invalid)}"
+        >
+        <div class="valid-feedback">Looks good!</div>
+        <div class="invalid-feedback" *ngIf="password.errors?.required">password is required</div>
+        <div class="invalid-feedback" *ngIf="password.errors?.pattern">Please enter valid password</div>
+
+        <!-- {{password.errors | json }} -->
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                <a class="pointer">Forgot password</a>
+            </div>
+            <div class="col-sm-6 text-right">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                </div>
+            </div>
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+        {{ isLoading ? 'processing....' : "Login" }}
+      </button>
+    </form>
+</div>
