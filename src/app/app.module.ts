@@ -13,6 +13,8 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { LanguageTranslateComponent } from './component/language-translate/language-translate.component';
 import { translatorConfig } from './translatorConfig';
 
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown-angular7';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +29,7 @@ import { translatorConfig } from './translatorConfig';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgMultiSelectDropDownModule,
     TranslateModule.forRoot(translatorConfig)
   ],
   providers: [],
